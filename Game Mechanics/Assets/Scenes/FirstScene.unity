@@ -344,6 +344,7 @@ MonoBehaviour:
   jumpMultiplier: 5.78
   horizontalInputName: Horizontal
   verticalInputName: Vertical
+  jumpInputName: Jump
   jumpFallOff:
     serializedVersion: 2
     m_Curve:
@@ -368,7 +369,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpKey: 32
 --- !u!1 &933343196
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseXInputName: Mouse X
   mouseYInputName: Mouse Y
-  sensitivity: 4.96
+  mouseSensitivity: 2.5
   player: {fileID: 657735391}
 --- !u!81 &2069364313
 AudioListener:

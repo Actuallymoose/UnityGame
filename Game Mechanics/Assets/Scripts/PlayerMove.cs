@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [Range(0, 10)]
+    [Range(0, 20)]
     public float forwardSpeed, strafeSpeed, jumpMultiplier; // force variables
-    public string horizontalInputName, verticalInputName; // variables to hold movement keys - see unity explorer
+    public string horizontalInputName, verticalInputName, jumpInputName; // variables to hold movement keys - see unity explorer
 
     // jumping variables
     public AnimationCurve jumpFallOff; // handles the curve of the jump
-    public KeyCode jumpKey;
     bool isJumping;
 
     CharacterController charControl; // character controller object - used to rotate the player instead of camera
@@ -44,7 +43,7 @@ public class PlayerMove : MonoBehaviour
     // decides when the player wants to jump
     void Jump()
     {
-        if (Input.GetKeyDown(jumpKey) && !isJumping)
+        if (Input.GetButton(jumpInputName) && !isJumping)
         {
             isJumping = true;
             StartCoroutine(JumpEvent());

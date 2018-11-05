@@ -6,7 +6,7 @@ public class PlayerLook : MonoBehaviour
     public string mouseXInputName, mouseYInputName;
 
     [Range(0,10)]
-    public float sensitivity;
+    public float mouseSensitivity;
     public Transform player;
 
     float clampY;
@@ -31,8 +31,8 @@ public class PlayerLook : MonoBehaviour
 
     void CameraRotation()
     {
-        float mouseX = Input.GetAxisRaw(mouseXInputName) * sensitivity;
-        float mouseY = Input.GetAxisRaw(mouseYInputName) * sensitivity;
+        float mouseX = Input.GetAxisRaw(mouseXInputName) * mouseSensitivity;
+        float mouseY = Input.GetAxisRaw(mouseYInputName) * mouseSensitivity;
 
         clampY += mouseY;
 
@@ -49,6 +49,5 @@ public class PlayerLook : MonoBehaviour
 
         transform.Rotate(Vector3.left * mouseY);
         player.Rotate(Vector3.up * mouseX);
-    }
-    
+    }  
 }
