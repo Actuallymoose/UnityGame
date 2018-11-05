@@ -342,9 +342,11 @@ MonoBehaviour:
   forwardSpeed: 6
   strafeSpeed: 3
   jumpMultiplier: 5.78
+  sprintSpeed: 2
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   jumpInputName: Jump
+  sprintInputName: Sprint
   jumpFallOff:
     serializedVersion: 2
     m_Curve:
@@ -601,7 +603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseXInputName: Mouse X
   mouseYInputName: Mouse Y
-  mouseSensitivity: 2.5
+  mouseSensitivityY: 2.81
+  mouseSensitivityX: 2.86
   player: {fileID: 657735391}
 --- !u!81 &2069364313
 AudioListener:
