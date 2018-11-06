@@ -12,6 +12,9 @@ public class PlayerMove : MonoBehaviour
     public AnimationCurve jumpFallOff; // handles the curve of the jump
     bool isJumping;
 
+    [Range(0,10)]
+    public float slopeRayLengthMultiplyer, slopeDownwardForce;// slope variables
+
     CharacterController charControl; // character controller object - used to rotate the player instead of camera
 
     // Use this for initialization
@@ -48,6 +51,12 @@ public class PlayerMove : MonoBehaviour
         Vector3 rightMove = transform.right * horizInput; // vector that stores the current movement in left/right direction
 
         charControl.SimpleMove(forwardMove + rightMove); // moves the player according to direction vectors - applies time.deltaTime
+
+        // if moving and on slope - move player down so they can move down slopes without falling
+        if((vertInput != 0 || horizInput != 0) && OnSlope())
+        {
+            charControl.Move(Vector3.down * charControl.height / 2 * slopeDownwardForce * Time.deltaTime);
+        }
     }
 
     // decides when the player wants to jump
@@ -77,5 +86,27 @@ public class PlayerMove : MonoBehaviour
 
         charControl.slopeLimit = 45.0f; // as above
         isJumping = false;
+    }
+
+    // returns true if player is on a slope
+    bool OnSlope()
+    {
+        if(isJumping)
+        {
+            return false;
+        }
+
+        RaycastHit hit;
+
+        // charControl.height / 2 - distance from middle of player body to the ground
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, charControl.height / 2 * slopeRayLengthMultiplyer)) // output parameter
+        {
+            if(hit.normal != Vector3.up)
+            {
+                return true;
+            }
+        }
+
+        return false; // default return
     }
 }
