@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [Range(0, 10)]
-    public float forwardSpeed, strafeSpeed, jumpMultiplier, sprintSpeed; // force variables
+    public float speed, jumpMultiplier, sprintSpeed, airmodifier = 0.5f; // force variables
     public string horizontalInputName, verticalInputName, jumpInputName, sprintInputName; // variables to hold movement keys - see unity explorer
 
     // jumping variables
@@ -33,24 +33,19 @@ public class PlayerMove : MonoBehaviour
 
    void Movement()
     {
-        float vertInput;
+        float vertInput = Input.GetAxis(verticalInputName);
+        float horizInput = Input.GetAxis(horizontalInputName); // left and right - ad
+        
+        Vector3 move = transform.forward * vertInput + transform.right * horizInput;
+        move *= speed;
 
         // enables shift only in the forward direction
-        if(Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0)
+        if (Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0)
         {
-            vertInput = Input.GetAxis(verticalInputName) * forwardSpeed * sprintSpeed;
-        }
-        else
-        {
-            vertInput = Input.GetAxis(verticalInputName) * forwardSpeed; // forward and back - ws
+            move *= sprintSpeed;
         }
 
-        float horizInput = Input.GetAxis(horizontalInputName) * strafeSpeed; // left and right - ad
-        
-        Vector3 forwardMove = transform.forward * vertInput; // vector that stores the current movement in forward/back direction
-        Vector3 rightMove = transform.right * horizInput; // vector that stores the current movement in left/right direction
-
-        charControl.SimpleMove(forwardMove + rightMove); // moves the player according to direction vectors - applies time.deltaTime
+        charControl.SimpleMove(move); // moves the player according to direction vectors - applies time.deltaTime
 
         // if moving and on slope - move player down so they can move down slopes without falling
         if((vertInput != 0 || horizInput != 0) && OnSlope())
@@ -79,8 +74,13 @@ public class PlayerMove : MonoBehaviour
         do
         {
             float jumpForce = jumpFallOff.Evaluate(timeInAir);
-            charControl.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
+
+            float horizInput = Input.GetAxis(horizontalInputName) * speed * airmodifier; // left and right - ad
+            Vector3 move = transform.right * horizInput + Vector3.up * jumpForce * jumpMultiplier;
+
+            charControl.Move(move * Time.deltaTime);
             timeInAir += Time.deltaTime;
+
             yield return null;
         } while (!charControl.isGrounded && charControl.collisionFlags != CollisionFlags.Above);
 
