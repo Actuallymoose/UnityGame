@@ -339,10 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128f17087c7be4b4ebf05baee76ba20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 6
-  strafeSpeed: 3
-  jumpMultiplier: 5.78
+  speed: 6
+  jumpMultiplier: 6
   sprintSpeed: 2
+  airmodifier: 0.25
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   jumpInputName: Jump

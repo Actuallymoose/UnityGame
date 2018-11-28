@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [Range(0, 10)]
-    public float speed, jumpMultiplier, sprintSpeed, airmodifier = 0.5f; // force variables
+    public float speed = 6f, jumpMultiplier = 6f, sprintSpeed = 2f, airmodifier = 0.5f; // force variables
     public string horizontalInputName, verticalInputName, jumpInputName, sprintInputName; // variables to hold movement keys - see unity explorer
 
     // jumping variables
@@ -75,8 +75,9 @@ public class PlayerMove : MonoBehaviour
         {
             float jumpForce = jumpFallOff.Evaluate(timeInAir);
 
+            float vertInput = Input.GetAxis(verticalInputName) * speed * airmodifier;
             float horizInput = Input.GetAxis(horizontalInputName) * speed * airmodifier; // left and right - ad
-            Vector3 move = transform.right * horizInput + Vector3.up * jumpForce * jumpMultiplier;
+            Vector3 move = transform.right * horizInput + transform.forward * vertInput + Vector3.up * jumpForce * jumpMultiplier;
 
             charControl.Move(move * Time.deltaTime);
             timeInAir += Time.deltaTime;
