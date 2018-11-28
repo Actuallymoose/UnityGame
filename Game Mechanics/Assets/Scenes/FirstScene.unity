@@ -342,7 +342,7 @@ MonoBehaviour:
   speed: 6
   jumpMultiplier: 6
   sprintSpeed: 2
-  airmodifier: 0.25
+  airModifier: 0.25
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   jumpInputName: Jump
