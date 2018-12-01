@@ -340,13 +340,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpMultiplier: 6
   sprintSpeed: 2
   airModifier: 0.25
   horizontalInputName: Horizontal
   verticalInputName: Vertical
   jumpInputName: Jump
   sprintInputName: Sprint
+  gravity: 14
+  jumpForce: 10
+  verticalVelocity: 0
   jumpFallOff:
     serializedVersion: 2
     m_Curve:
