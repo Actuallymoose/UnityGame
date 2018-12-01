@@ -13,8 +13,6 @@ public class PlayerMove : MonoBehaviour
     [Range(0,10)]
     public float slopeRayLengthMultiplyer, slopeDownwardForce;// slope variables
 
-    bool isJumping;
-
     CharacterController controller; // character controller object - used to rotate the player instead of camera
 
     // Use this for initialization
@@ -54,17 +52,17 @@ public class PlayerMove : MonoBehaviour
         Vector3 move = transform.forward * vertInput + Vector3.up * verticalVelocity + transform.right * horizInput;
         controller.Move(move * Time.deltaTime);
 
-        //// if moving and on slope - move player down so they can move down slopes without falling
-        //if ((vertInput != 0 || horizInput != 0) && OnSlope())
-        //{
-        //    controller.Move(Vector3.down * controller.height / 2 * slopeDownwardForce * Time.deltaTime);
-        //}
+        // if moving and on slope - move player down so they can move down slopes without falling
+        if ((vertInput != 0 || horizInput != 0) && OnSlope())
+        {
+            controller.Move(Vector3.down * controller.height / 2 * slopeDownwardForce * Time.deltaTime);
+        }
     }
 
     // returns true if player is on a slope
     bool OnSlope()
     {
-        if(isJumping)
+        if(!controller.isGrounded)
         {
             return false;
         }
