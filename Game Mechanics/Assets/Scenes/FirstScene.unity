@@ -347,32 +347,8 @@ MonoBehaviour:
   jumpInputName: Jump
   sprintInputName: Sprint
   gravity: 14
-  jumpForce: 10
+  jumpForce: 6
   verticalVelocity: 0
-  jumpFallOff:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1.0029907
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7001955
-      value: 0.0030025898
-      inSlope: -0.226072
-      outSlope: -0.226072
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.13279945
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   slopeRayLengthMultiplyer: 1.5
   slopeDownwardForce: 5.13
 --- !u!1 &933343196
