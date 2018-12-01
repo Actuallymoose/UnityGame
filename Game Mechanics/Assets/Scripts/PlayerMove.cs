@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     [Range(0,10)]
     public float slopeRayLengthMultiplyer, slopeDownwardForce;// slope variables
 
+    bool isJumping;
+
     CharacterController controller; // character controller object - used to rotate the player instead of camera
 
     // Use this for initialization
