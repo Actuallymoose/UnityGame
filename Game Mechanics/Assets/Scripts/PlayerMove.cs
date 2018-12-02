@@ -67,16 +67,14 @@ public class PlayerMove : MonoBehaviour
         move *= speed;
         move += Vector3.up * verticalVelocity;
 
-        Debug.Log(move.magnitude);
-        Debug.Log(airMove.magnitude);
-
         if(!controller.isGrounded)
         {
-            move = Vector3.Lerp(move, airMove, 0.25f);
+            move = Vector3.Lerp(move, airMove, 0.5f);
         }
         
         controller.Move(move * Time.deltaTime);
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // if moving and on slope - move player down so they can move down slopes without falling
         if ((vertInput != 0 || horizInput != 0) && OnSlope())
         {
