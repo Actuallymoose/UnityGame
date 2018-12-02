@@ -29,15 +29,22 @@ public class PlayerMove : MonoBehaviour
 
    void Movement()
     {
-        float vertInput = Input.GetAxis(verticalInputName) * speed;
-        float horizInput = Input.GetAxis(horizontalInputName) * speed;
+        float airVelocity;
+
+        float horizInput = Input.GetAxis(horizontalInputName);
+        float vertInput = Input.GetAxis(verticalInputName);
+        Vector3 move = transform.right * horizInput + transform.forward * vertInput;
+
+        Vector3 airMove = new Vector3();
 
         if (controller.isGrounded)
         {
+            airVelocity = 0f;
+
             // enables shift only in the forward direction
             if (Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0)
             {
-                vertInput *= sprintSpeed;
+                move *= sprintSpeed;
             }
 
             // jumps
@@ -45,11 +52,29 @@ public class PlayerMove : MonoBehaviour
             {
                 verticalVelocity = jumpForce;
             }
+
+            airMove = new Vector3();
+        }
+        else
+        {
+            airVelocity = speed * airModifier;
+            airMove = transform.right * Input.GetAxis(horizontalInputName) + transform.forward * Input.GetAxis(verticalInputName);
+            airMove *= airVelocity;
         }
 
         verticalVelocity -= gravity * Time.deltaTime; // applies gravity
 
-        Vector3 move = transform.forward * vertInput + Vector3.up * verticalVelocity + transform.right * horizInput;
+        move *= speed;
+        move += Vector3.up * verticalVelocity;
+
+        Debug.Log(move.magnitude);
+        Debug.Log(airMove.magnitude);
+
+        if(!controller.isGrounded)
+        {
+            move = Vector3.Lerp(move, airMove, 0.25f);
+        }
+        
         controller.Move(move * Time.deltaTime);
 
         // if moving and on slope - move player down so they can move down slopes without falling
