@@ -29,50 +29,50 @@ public class PlayerMove : MonoBehaviour
 
    void Movement()
     {
-        float airVelocity;
+        float timer = 0;
 
         float horizInput = Input.GetAxis(horizontalInputName);
         float vertInput = Input.GetAxis(verticalInputName);
-        Vector3 move = transform.right * horizInput + transform.forward * vertInput;
+        Vector3 startVelocity = transform.right * horizInput + transform.forward * vertInput;
+        startVelocity *= speed;
 
-        Vector3 airMove = new Vector3();
+        Vector3 airTargetVector = new Vector3();
 
         if (controller.isGrounded)
         {
-            airVelocity = 0f;
+            airTargetVector = startVelocity;
 
             // enables shift only in the forward direction
             if (Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0)
             {
-                move *= sprintSpeed;
+                startVelocity *= sprintSpeed;
             }
 
             // jumps
             if (Input.GetButton(jumpInputName))
             {
                 verticalVelocity = jumpForce;
+                timer = 0;
             }
 
-            airMove = new Vector3();
+            airTargetVector = new Vector3();
         }
         else
         {
-            airVelocity = speed * airModifier;
-            airMove = transform.right * Input.GetAxis(horizontalInputName) + transform.forward * Input.GetAxis(verticalInputName);
-            airMove *= airVelocity;
+            airTargetVector = startVelocity;
+            airTargetVector += transform.right * Input.GetAxis(horizontalInputName) * airModifier + transform.forward * Input.GetAxis(verticalInputName) * airModifier;
         }
+
+        timer += Time.deltaTime * 0.5f;
+        Debug.Log(timer);
 
         verticalVelocity -= gravity * Time.deltaTime; // applies gravity
 
-        move *= speed;
-        move += Vector3.up * verticalVelocity;
+        startVelocity += Vector3.up * verticalVelocity;
 
-        if(!controller.isGrounded)
-        {
-            move = Vector3.Lerp(move, airMove, 0.5f);
-        }
-        
-        controller.Move(move * Time.deltaTime);
+        Vector3 finalMove = Vector3.Lerp(startVelocity, airTargetVector, timer);
+
+        controller.Move(finalMove * Time.deltaTime);
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // if moving and on slope - move player down so they can move down slopes without falling
