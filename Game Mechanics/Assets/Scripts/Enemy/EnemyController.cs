@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
-    enum ENEMY_STATES {PATROL, ATTACK}
-    ENEMY_STATES state;
+    enum State {PATROL, CHASE, RETURN} // starts in patrol state
+    State state;
     
     public float lookRadius = 10f, slerpSmoothing = 5f;
+    float distance;
 
     Transform target;
     NavMeshAgent agent;
@@ -21,18 +22,57 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float distance = Vector3.Distance(target.position, transform.position); // distance between enemy and player
+        distance = Vector3.Distance(target.position, transform.position); // distance between enemy and player
 
+        switch(state)
+        {
+            case State.PATROL:
+                Patrol();
+                break;
+            case State.CHASE:
+                Chase();
+                break;
+            case State.RETURN:
+                Return();
+                break;
+        }
+        
+	}
+
+    void Chase()
+    {
+        agent.SetDestination(target.position);
+
+        if (distance <= agent.stoppingDistance)
+        {
+            FaceTarget();
+            Attack();
+        }
+
+        if(distance > lookRadius)
+        {
+            //state = State.RETURN;
+            state = State.PATROL;
+        }
+    }
+
+    void Attack()
+    {
+        // attack things
+    }
+
+    void Patrol()
+    {
         if(distance <= lookRadius)
         {
-            agent.SetDestination(target.position);
-
-            if(distance <= agent.stoppingDistance)
-            {
-                FaceTarget();
-            }
+            state = State.CHASE;
         }
-	}
+    }
+
+    void Return()
+    {
+
+    }
 
     void FaceTarget()
     {
