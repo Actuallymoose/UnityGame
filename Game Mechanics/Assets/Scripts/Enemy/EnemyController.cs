@@ -4,27 +4,31 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
+    /// <todo>
+    /// implement search so that when ai loses sight of target it stays and looks around for a few seconds
+    /// </todo>
 
     enum State {PATROL, CHASE, RETURN} // starts in patrol state
     State state;
-    
-    public float lookRadius = 10f, slerpSmoothing = 5f;
-    float distance;
 
-    Transform target;
+    public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, stoppingDistance = 3f;
+    float distanceToPlayer;
+    public int currentPoint = 0;
+
+    public Transform[] waypoints;
+    public Transform target;
     NavMeshAgent agent;
 
 	// Use this for initialization
 	void Start () {
-        target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        distance = Vector3.Distance(target.position, transform.position); // distance between enemy and player
+        distanceToPlayer = Vector3.Distance(target.position, transform.position); // distance between enemy and player
 
-        switch(state)
+        switch (state)
         {
             case State.PATROL:
                 Patrol();
@@ -33,7 +37,7 @@ public class EnemyController : MonoBehaviour {
                 Chase();
                 break;
             case State.RETURN:
-                Return();
+                //Return();
                 break;
         }
         
@@ -41,15 +45,16 @@ public class EnemyController : MonoBehaviour {
 
     void Chase()
     {
+        agent.stoppingDistance = stoppingDistance; // sets stopping distance to default for chasing
         agent.SetDestination(target.position);
 
-        if (distance <= agent.stoppingDistance)
+        if (distanceToPlayer <= agent.stoppingDistance)
         {
             FaceTarget();
-            Attack();
+            //Attack();
         }
 
-        if(distance > lookRadius)
+        if(distanceToPlayer > lookRadius)
         {
             //state = State.RETURN;
             state = State.PATROL;
@@ -63,15 +68,27 @@ public class EnemyController : MonoBehaviour {
 
     void Patrol()
     {
-        if(distance <= lookRadius)
+        agent.stoppingDistance = 0; // so agent walks right up to waypoint
+
+        float distanceToWaypoint = Vector3.Distance(waypoints[currentPoint].position, transform.position);
+
+        if (distanceToPlayer <= lookRadius)
         {
             state = State.CHASE;
         }
-    }
 
-    void Return()
-    {
-
+        if(distanceToWaypoint > minDistance)
+        {
+            agent.SetDestination(waypoints[currentPoint].position);
+        }
+        else if(currentPoint + 1 == waypoints.Length)
+        {
+            currentPoint = 0;
+        }
+        else
+        {
+            currentPoint++;
+        }
     }
 
     void FaceTarget()
