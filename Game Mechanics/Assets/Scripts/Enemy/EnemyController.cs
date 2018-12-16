@@ -8,12 +8,12 @@ public class EnemyController : MonoBehaviour {
     /// implement search so that when ai loses sight of target it stays and looks around for a few seconds
     /// </todo>
 
-    enum State {PATROL, CHASE, RETURN} // starts in patrol state
+    enum State {PATROL, CHASE, ATTACK} // starts in patrol state
     State state;
 
     public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, stoppingDistance = 3f;
     float distanceToPlayer;
-    public int currentPoint = 0;
+    int currentPoint = 0;
 
     public Transform[] waypoints;
     public Transform target;
@@ -36,11 +36,10 @@ public class EnemyController : MonoBehaviour {
             case State.CHASE:
                 Chase();
                 break;
-            case State.RETURN:
-                //Return();
+            case State.ATTACK:
+                Attack();
                 break;
         }
-        
 	}
 
     void Chase()
@@ -50,20 +49,27 @@ public class EnemyController : MonoBehaviour {
 
         if (distanceToPlayer <= agent.stoppingDistance)
         {
-            FaceTarget();
-            //Attack();
+            state = State.ATTACK;
         }
-
-        if(distanceToPlayer > lookRadius)
+        else if(distanceToPlayer > lookRadius)
         {
-            //state = State.RETURN;
             state = State.PATROL;
         }
     }
 
     void Attack()
     {
-        // attack things
+        FaceTarget(); // always looks at the player when attacking
+
+        if (distanceToPlayer > stoppingDistance)
+        {
+            state = State.CHASE;
+        }
+            
+        else if (distanceToPlayer > lookRadius)
+        {
+            state = State.PATROL;
+        }
     }
 
     void Patrol()
@@ -98,6 +104,7 @@ public class EnemyController : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * slerpSmoothing);
     }
 
+    // used to draw agent field of view
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
