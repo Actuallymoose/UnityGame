@@ -4,15 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
-    /// <todo>
-    /// implement search so that when ai loses sight of target it stays and looks around for a few seconds
-    /// </todo>
 
     enum State {PATROL, CHASE, ATTACK} // starts in patrol state
     State state;
 
-    public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, stoppingDistance = 3f;
-    float distanceToPlayer;
+    public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, stoppingDistance = 3f, searchTime = 5f;
+    float distanceToPlayer, searchTimer = 0f;
     int currentPoint = 0;
 
     public Transform[] waypoints;
@@ -44,16 +41,28 @@ public class EnemyController : MonoBehaviour {
 
     void Chase()
     {
-        agent.stoppingDistance = stoppingDistance; // sets stopping distance to default for chasing
-        agent.SetDestination(target.position);
+        if(distanceToPlayer <= lookRadius)
+        {
+            agent.stoppingDistance = stoppingDistance; // sets stopping distance to default for chasing
+            agent.SetDestination(target.position);
 
-        if (distanceToPlayer <= agent.stoppingDistance)
-        {
-            state = State.ATTACK;
+            if (distanceToPlayer <= agent.stoppingDistance)
+            {
+                state = State.ATTACK;
+            }
         }
-        else if(distanceToPlayer > lookRadius)
+       else if(distanceToPlayer > lookRadius) // when the agent loses the player it will wait for 5 seconds before return to its patrol
         {
-            state = State.PATROL;
+            if(searchTimer > searchTime)
+            {
+                state = State.PATROL;
+                searchTimer = 0f;
+            }
+            else
+            {
+                searchTimer += 1f * Time.deltaTime;
+            }
+            
         }
     }
 
