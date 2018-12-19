@@ -46,7 +46,6 @@ public class PlayerHealth : MonoBehaviour {
 
         healthBar.value = currentHealth;
 
-
         if (currentHealth <= 0 && !isDead)
         {
             Death();
