@@ -42,11 +42,12 @@ public class PlayerHealth : MonoBehaviour {
     {
         damaged = true;
 
-        currentHealth -= amount;
+        currentHealth -= amount; ;
 
         healthBar.value = currentHealth;
 
-        if(currentHealth <= 0 && !isDead)
+
+        if (currentHealth <= 0 && !isDead)
         {
             Death();
         }
