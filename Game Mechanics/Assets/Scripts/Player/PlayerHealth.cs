@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour {
 
     public int startingHealth = 100, currentHealth;
-    public Slider healthBar;
-    public Image damageImage;
     public float flashSpeed = 5f;// speed damage image fades at
     public Color flashColour = Color.red;
 
+    public Slider healthBar;
+    public Image damageImage;
     public GameObject playerCam;
     PlayerMove movement;
     PlayerLook looking;
