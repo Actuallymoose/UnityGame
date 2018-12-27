@@ -140,5 +140,13 @@ public class EnemyController : MonoBehaviour {
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+
+        Gizmos.color = Color.red;
+
+        for(int i = 0; i < waypoints.Length; i++)
+        {
+            Gizmos.DrawSphere(waypoints[i].position, 0.2f);
+        }
+        
     }
 }
