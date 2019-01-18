@@ -66,16 +66,17 @@ public class PlayerMove : MonoBehaviour
         controller.Move((move + jumpVelocity) * Time.deltaTime);
        
         // if moving and on slope - move player down so they can move down slopes without falling
-        if ((Input.GetAxis(verticalInputName) != 0 || Input.GetAxis(horizontalInputName) != 0) && OnSlope())
+        if ((Input.GetAxis(verticalInputName) != 0 || Input.GetAxis(horizontalInputName) != 0) && OnSlope() && !Input.GetButton(jumpInputName))
         {
             controller.Move(Vector3.down * controller.height / 2 * slopeDownwardForce * Time.deltaTime);
         }
+
     }
 
     // returns true if player is on a slope
     bool OnSlope()
     {
-        if(!controller.isGrounded) // needs to be positive instead
+        if(controller.isGrounded)
         {
             return false;
         }
