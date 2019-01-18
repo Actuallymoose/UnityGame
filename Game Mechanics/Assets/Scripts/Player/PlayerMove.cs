@@ -15,11 +15,13 @@ public class PlayerMove : MonoBehaviour
     private Vector3 jumpVelocity = new Vector3(); // for jumping movement
 
     CharacterController controller; // character controller object - used to rotate the player instead of camera
+    PlayerStamina stamina;
 
     // Use this for initialization
     void Start ()
     {
         controller = GetComponent<CharacterController>();
+        stamina = GetComponent<PlayerStamina>();
 	}
 	
 	// Update is called once per frame
@@ -33,9 +35,14 @@ public class PlayerMove : MonoBehaviour
             move *= speed;
 
             // enables shift only in the forward direction
-            if (Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0)
+            if (Input.GetButton(sprintInputName) && Input.GetAxis(verticalInputName) > -0 && stamina.hasStam)
             {
+                stamina.isSprinting = true;
                 move *= sprintSpeed;
+            }
+            else
+            {
+                stamina.isSprinting = false;
             }
 
             // jumps
