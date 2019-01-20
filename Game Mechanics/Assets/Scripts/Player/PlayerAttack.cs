@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
-    public int damage = 50, attackableMask;
-    public float range = 3f; // same as stopping distance of ai
+    public int attackableMask;
+    public float range = 3f, damage = 50; // same as stopping distance of ai
 
     public string attackButton;
 

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public int startingHealth = 100, currentHealth, damage = 0, damageCount = 0, count = 0;
-    public float flashSpeed = 5f, damageInterval = 0.01f;// speed damage image fades at
+    public float startingHealth = 100, currentHealth, flashSpeed = 5f, damageInterval = 0.01f;
+    float totalDamage = 0f, incrementDamage = 0f, trackHealth;
+
+
     public Color flashColour = Color.red;
 
     float timer = 0f;
@@ -54,12 +56,10 @@ public class PlayerHealth : MonoBehaviour {
 
         if (timer > damageInterval)
         {
-            if (count < damageCount)
+            if (currentHealth != trackHealth - totalDamage)
             {
-                currentHealth -= damage;
+                currentHealth -= incrementDamage;
                 healthBar.value = currentHealth;
-
-                count++;
             }
 
             timer = 0f;
@@ -72,12 +72,12 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     // amount of damage taken from an enemy
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         damaged = true;
-        damage = amount/amount;
-        damageCount = amount;
-        count = 0;
+        incrementDamage = amount/amount;
+        totalDamage = amount;
+        trackHealth = currentHealth;
     }
 
     void Death()

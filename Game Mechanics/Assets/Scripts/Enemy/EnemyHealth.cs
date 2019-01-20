@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-    public int startingHealth = 100, currentHealth;
-    public float pushBackAmount = 1f;
+    public float startingHealth = 100, pushBackAmount = 1f, currentHealth;
 
     bool isDead;
     new CapsuleCollider collider;
@@ -16,7 +15,7 @@ public class EnemyHealth : MonoBehaviour {
         collider = GetComponent<CapsuleCollider>();
 	}
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (isDead)
         {

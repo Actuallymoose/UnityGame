@@ -8,9 +8,9 @@ public class EnemyController : MonoBehaviour {
     enum State {PATROL, CHASE, ATTACK} // starts in patrol state
     State state;
 
-    public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, stoppingDistance = 3f, searchTime = 5f, timeBetweenAttacks = 1.5f;
+    public float lookRadius = 10f, slerpSmoothing = 5f, minDistance = 1f, attackDistance = 3f, searchTime = 5f, timeBetweenAttacks = 1.5f, attackDamage = 20;
     float distanceToPlayer, searchTimer = 0f, attackTimer = 0f;
-    public int currentWaypoint = 0, attackDamage = 20; 
+    public int currentWaypoint = 0; 
 
     public Transform[] waypoints;
     Transform target;
@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour {
     {
         if(distanceToPlayer <= lookRadius)
         {
-            agent.stoppingDistance = stoppingDistance; // sets stopping distance to default for chasing
+            agent.stoppingDistance = attackDistance; // sets stopping distance to default for chasing
             agent.SetDestination(target.position);
 
             if (distanceToPlayer <= agent.stoppingDistance)
@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour {
             }
         }
 
-        if (distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer > attackDistance)
         {
             state = State.CHASE;
         }
@@ -104,25 +104,29 @@ public class EnemyController : MonoBehaviour {
     {
         agent.stoppingDistance = 0; // so agent walks right up to waypoint
 
-        float distanceToWaypoint = Vector3.Distance(waypoints[currentWaypoint].position, transform.position);
+        if(waypoints.Length > 0)
+        {
+            float distanceToWaypoint = Vector3.Distance(waypoints[currentWaypoint].position, transform.position);
 
-        if (distanceToPlayer <= lookRadius)
-        {
-            state = State.CHASE;
-        }
+            if (distanceToPlayer <= lookRadius)
+            {
+                state = State.CHASE;
+            }
 
-        if(distanceToWaypoint > minDistance)
-        {
-            agent.SetDestination(waypoints[currentWaypoint].position);
+            if (distanceToWaypoint > minDistance)
+            {
+                agent.SetDestination(waypoints[currentWaypoint].position);
+            }
+            else if (currentWaypoint + 1 == waypoints.Length)
+            {
+                currentWaypoint = 0;
+            }
+            else
+            {
+                currentWaypoint++;
+            }
         }
-        else if(currentWaypoint + 1 == waypoints.Length)
-        {
-            currentWaypoint = 0;
-        }
-        else
-        {
-            currentWaypoint++;
-        }
+        
     }
 
     void FaceTarget()
@@ -139,14 +143,18 @@ public class EnemyController : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, lookRadius);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
 
         Gizmos.color = Color.red;
 
-        for(int i = 0; i < waypoints.Length; i++)
+        if(waypoints.Length > 0)
         {
-            Gizmos.DrawSphere(waypoints[i].position, 0.2f);
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                Gizmos.DrawSphere(waypoints[i].position, 0.2f);
+            }
         }
+        
         
     }
 }
