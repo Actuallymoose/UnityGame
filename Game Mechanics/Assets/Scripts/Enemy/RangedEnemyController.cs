@@ -56,9 +56,13 @@ public class RangedEnemyController : MonoBehaviour {
 
     void Run()
     {
+        agent.stoppingDistance = 0;
+
         if (distanceToPlayer <= playerTooClose)
         {
-            agent.SetDestination(-transform.forward * 5f);
+            Vector3 dirToTarget = transform.position - target.position;
+            Vector3 newPos = transform.position + dirToTarget;
+            agent.SetDestination(newPos);
         }
         else if (distanceToPlayer <= lookRadius)
         {

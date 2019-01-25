@@ -1107,7 +1107,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4773048671824456, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.86
+      value: 9.68
       objectReference: {fileID: 0}
     - target: {fileID: 4773048671824456, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1178,7 +1178,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4773048671824456, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.86
+      value: -5.37
       objectReference: {fileID: 0}
     - target: {fileID: 4773048671824456, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1230,7 +1230,7 @@ Prefab:
       objectReference: {fileID: 1801945026}
     - target: {fileID: 1361496100960896, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   attackDamage: 20
   searchTime: 5
   timeBetweenAttacks: 1.5
-  playerTooClose: 3
+  playerTooClose: 5
   currentWaypoint: 0
   waypoints:
   - {fileID: 2089612081}
@@ -2126,6 +2126,22 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ad407e33e591145967727b415883bc, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1703202398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1835938379217912, guid: d2ad407e33e591145967727b415883bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1703202397}
+--- !u!114 &1703202399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1703202398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b264eb0d78041cc4db03f59b0cda8168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739526723
 GameObject:
   m_ObjectHideFlags: 0
