@@ -1,35 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HackPlayer : MonoBehaviour {
 
     string buttonChoice;
-    PlayerMove moveVariables;
+    public PlayerMove moveVariables;
 
-    public int increment = 1;
-
-    private void Start()
-    {
-        moveVariables.GetComponent<PlayerMove>();
-    }
+    public float increment = 0.2f;
 
     private void Update()
     {
-        
-
         switch (buttonChoice)
         {
             case "increaseSpeed":
                 moveVariables.speed += increment;
                 break;
             case "decreaseSpeed":
-                moveVariables.speed -= increment;
+                if(moveVariables.speed > 1f)
+                {
+                    moveVariables.speed -= increment;
+                }
                 break;
         }
     }
 
-    public void GetButtonChoice(string choice)
+    public void ClickLog(string choice)
     {
         buttonChoice = choice;
     }
