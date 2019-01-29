@@ -8,7 +8,7 @@ public class HackPlayer : MonoBehaviour {
     string buttonChoice;
     public PlayerMove moveVariables;
 
-    public float increment = 0.2f;
+    public float increment = 1f;
 
     private void Update()
     {
@@ -16,12 +16,14 @@ public class HackPlayer : MonoBehaviour {
         {
             case "increaseSpeed":
                 moveVariables.speed += increment;
+                buttonChoice = "";
                 break;
             case "decreaseSpeed":
                 if(moveVariables.speed > 1f)
                 {
                     moveVariables.speed -= increment;
                 }
+                buttonChoice = "";
                 break;
         }
     }
