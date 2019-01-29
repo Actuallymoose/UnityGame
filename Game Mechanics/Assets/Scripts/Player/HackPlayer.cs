@@ -15,17 +15,17 @@ public class HackPlayer : MonoBehaviour {
         switch (buttonChoice)
         {
             case "increaseSpeed":
-                moveVariables.speed += increment;
-                buttonChoice = "";
+                AlterSpeed(increment);
                 break;
             case "decreaseSpeed":
                 if(moveVariables.speed > 1f)
                 {
-                    moveVariables.speed -= increment;
+                    AlterSpeed(-increment);
                 }
-                buttonChoice = "";
                 break;
         }
+
+        buttonChoice = "";
     }
 
     public void ClickLog(string choice)
@@ -33,4 +33,8 @@ public class HackPlayer : MonoBehaviour {
         buttonChoice = choice;
     }
 
+    void AlterSpeed(float amount)
+    {
+        moveVariables.speed += amount;
+    }
 }
