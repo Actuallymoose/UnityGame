@@ -7,6 +7,7 @@ public class HackPlayer : MonoBehaviour {
 
     string buttonChoice;
     public PlayerMove moveVariables;
+    public PlayerHackResources points;
 
     public float increment = 1f;
 
@@ -15,12 +16,17 @@ public class HackPlayer : MonoBehaviour {
         switch (buttonChoice)
         {
             case "increaseSpeed":
-                AlterSpeed(increment);
+                if(points.currentPoints > 0)
+                {
+                    AlterSpeed(increment);
+                    points.AlterPoints(-1);
+                }
                 break;
             case "decreaseSpeed":
                 if(moveVariables.speed > 1f)
                 {
                     AlterSpeed(-increment);
+                    points.AlterPoints(1);
                 }
                 break;
         }
