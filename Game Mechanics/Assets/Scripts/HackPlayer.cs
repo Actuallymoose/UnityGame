@@ -16,20 +16,37 @@ public class HackPlayer : MonoBehaviour {
     {
         switch (buttonChoice)
         {
-            case "increaseSpeed":
+            case "+speed":
                 if(points.currentPoints > 0)
                 {
                     AlterSpeed(increment);
                     points.AlterPoints(-1);
                 }
                 break;
-            case "decreaseSpeed":
+            case "-speed":
                 if(moveVariables.speed > 1f)
                 {
                     AlterSpeed(-increment);
                     points.AlterPoints(1);
                 }
                 break;
+            case "+gravity":
+                break;
+            case "-gravity":
+                break;
+            case "+jump":
+                break;
+            case "-jump":
+                break;
+            case "+airMove":
+                break;
+            case "-airMove":
+                break;
+            case "+sprint":
+                break;
+            case "-sprint":
+                break;
+
         }
 
         UpdateText();
