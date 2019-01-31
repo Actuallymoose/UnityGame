@@ -8,6 +8,7 @@ public class HackPlayer : MonoBehaviour {
     string buttonChoice;
     public PlayerMove moveVariables;
     public PlayerHackResources points;
+    public Text speedText;
 
     public float increment = 1f;
 
@@ -31,6 +32,7 @@ public class HackPlayer : MonoBehaviour {
                 break;
         }
 
+        UpdateSpeedText();
         buttonChoice = "";
     }
 
@@ -42,5 +44,10 @@ public class HackPlayer : MonoBehaviour {
     void AlterSpeed(float amount)
     {
         moveVariables.speed += amount;
+    }
+
+    void UpdateSpeedText()
+    {
+        speedText.text = "Player.speed = " + moveVariables.speed.ToString();
     }
 }
