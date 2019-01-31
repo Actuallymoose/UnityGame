@@ -32,7 +32,7 @@ public class HackPlayer : MonoBehaviour {
                 break;
         }
 
-        UpdateSpeedText();
+        UpdateText();
         buttonChoice = "";
     }
 
@@ -46,7 +46,7 @@ public class HackPlayer : MonoBehaviour {
         moveVariables.speed += amount;
     }
 
-    void UpdateSpeedText()
+    void UpdateText()
     {
         speedText.text = "Player.speed = " + moveVariables.speed.ToString();
     }
