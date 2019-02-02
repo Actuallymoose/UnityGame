@@ -792,7 +792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.2000122, y: 4.71}
+  m_AnchoredPosition: {x: -3.2000122, y: 4.79}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377249569
@@ -866,6 +866,10 @@ MonoBehaviour:
   moveVariables: {fileID: 172231194}
   points: {fileID: 384925307}
   speedText: {fileID: 315623153}
+  gravityText: {fileID: 1514754913}
+  jumpText: {fileID: 377249569}
+  airControlText: {fileID: 1167193356}
+  sprintText: {fileID: 714436684}
   increment: 1
 --- !u!4 &384925306
 Transform:
@@ -3008,7 +3012,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: +Jump
+          m_StringArgument: +jump
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3773,7 +3777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.2000122, y: 7.91}
+  m_AnchoredPosition: {x: -3.2000122, y: 8.16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514754913
