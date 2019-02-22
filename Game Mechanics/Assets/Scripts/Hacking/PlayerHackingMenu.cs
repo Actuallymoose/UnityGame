@@ -12,6 +12,7 @@ public class PlayerHackingMenu : MonoBehaviour {
     bool menuOpen = false;
 
     public PlayerLook look;
+    public PlayerAttack ableToAttack;
 
     // Use this for initialization
     void Awake()
@@ -28,6 +29,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             menuOpen = true;
             look.enabled = false;
             Cursor.lockState = CursorLockMode.None;
+            ableToAttack.enabled = false;
         }
         else if (Input.GetButtonDown(openPlayerHacking))
         {
@@ -35,6 +37,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             menuOpen = false;
             look.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
+            ableToAttack.enabled = true;
         }
     }
 }
