@@ -20,70 +20,70 @@ public class HackPlayer : MonoBehaviour {
                 if(points.currentPoints > 0)
                 {
                     AlterSpeed(increment);
-                    points.AlterPoints(-1);
+                    points.TakePoints();
                 }
                 break;
             case "-speed":
                 if(moveVariables.speed > 1f)
                 {
                     AlterSpeed(-increment);
-                    points.AlterPoints(1);
+                    points.AddPoints();
                 }
                 break;
             case "+gravity":
                 if(points.currentPoints > 0)
                 {
                     AlterGravity(increment);
-                    points.AlterPoints(-1);
+                    points.TakePoints();
                 }
                 break;
             case "-gravity":
                 if(moveVariables.gravity > 1f)
                 {
                     AlterGravity(-increment);
-                    points.AlterPoints(1);
+                    points.AddPoints();
                 }
                 break;
             case "+jump":
                 if(points.currentPoints > 0)
                 {
                     AlterJump(increment);
-                    points.AlterPoints(-1);
+                    points.TakePoints();
                 }
                 break;
             case "-jump":
                 if(moveVariables.jumpForce > 1f)
                 {
                     AlterJump(-increment);
-                    points.AlterPoints(1);
+                    points.AddPoints();
                 }
                 break;
             case "+airMove":
                 if(points.currentPoints > 0)
                 {
                     AlterAirMove(increment);
-                    points.AlterPoints(-1);
+                    points.TakePoints();
                 }
                 break;
             case "-airMove":
                 if(moveVariables.airSpeed > 1f)
                 {
                     AlterAirMove(-increment);
-                    points.AlterPoints(1);
+                    points.AddPoints();
                 }
                 break;
             case "+sprint":
                 if(points.currentPoints > 0)
                 {
                     AlterSprint(increment);
-                    points.AlterPoints(-1);
+                    points.TakePoints();
                 }
                 break;
             case "-sprint":
                 if(moveVariables.sprintSpeed > 1f)
                 {
                     AlterSprint(-increment);
-                    points.AlterPoints(1);
+                    points.AddPoints();
                 }
                 break;
         }

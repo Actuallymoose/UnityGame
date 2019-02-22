@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHackResources : MonoBehaviour {
 
-    public int startingPoints = 10, currentPoints;
+    public int startingPoints = 10, currentPoints, amount = 1;
 
     public Text hackPoints;
 
@@ -14,10 +14,16 @@ public class PlayerHackResources : MonoBehaviour {
         currentPoints = startingPoints;
         UpdatePointsText();
     }
-
-    public void AlterPoints(int amount)
+    
+    public void AddPoints()
     {
         currentPoints += amount;
+        UpdatePointsText();
+    }
+
+    public void TakePoints()
+    {
+        currentPoints -= amount;
         UpdatePointsText();
     }
 
