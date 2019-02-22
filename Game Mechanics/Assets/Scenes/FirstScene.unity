@@ -913,6 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1138623633}
   openPlayerHacking: OpenPlayerHacking
+  selectTarget: Fire1
   look: {fileID: 1732200457}
   ableToAttack: {fileID: 876589665}
 --- !u!1 &423524090
