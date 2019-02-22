@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 384925306}
   - component: {fileID: 384925305}
   - component: {fileID: 384925307}
+  - component: {fileID: 384925308}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -897,7 +898,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingPoints: 10
   currentPoints: 0
+  amount: 1
   hackPoints: {fileID: 1796062103}
+--- !u!114 &384925308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 384925304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd3068a18c215b4ebc3a36b9f7d7152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1138623633}
+  openPlayerHacking: OpenPlayerHacking
+  look: {fileID: 1732200457}
+  ableToAttack: {fileID: 876589665}
 --- !u!1 &423524090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2155,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 852259012}
   m_CullTransparentMesh: 0
+--- !u!114 &876589665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114036923396185936, guid: d2ad407e33e591145967727b415883bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1703202397}
+  m_Script: {fileID: 11500000, guid: b72f36690b41de4408a8f4d019b41c4a, type: 3}
 --- !u!1 &882602405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,7 +2853,6 @@ GameObject:
   - component: {fileID: 1138623633}
   - component: {fileID: 1138623632}
   - component: {fileID: 1138623631}
-  - component: {fileID: 1138623635}
   m_Layer: 5
   m_Name: HackingPlayerCanvas
   m_TagString: Untagged
@@ -2914,20 +2936,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1138623635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1138623630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7fe8d0db0e6cc45b263c943c4b0e0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 1138623633}
-  openPlayerHacking: OpenPlayerHacking
-  look: {fileID: 1732200457}
 --- !u!1 &1149783313
 GameObject:
   m_ObjectHideFlags: 0
