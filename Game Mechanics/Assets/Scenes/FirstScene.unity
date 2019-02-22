@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd3068a18c215b4ebc3a36b9f7d7152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1138623633}
+  playerCanvas: {fileID: 1138623633}
   openPlayerHacking: OpenPlayerHacking
   selectTarget: Fire1
   look: {fileID: 1732200457}
@@ -4387,6 +4387,10 @@ Prefab:
       propertyPath: stamBar
       value: 
       objectReference: {fileID: 423524094}
+    - target: {fileID: 1393585226799100, guid: d2ad407e33e591145967727b415883bc, type: 2}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ad407e33e591145967727b415883bc, type: 2}
   m_IsPrefabAsset: 0

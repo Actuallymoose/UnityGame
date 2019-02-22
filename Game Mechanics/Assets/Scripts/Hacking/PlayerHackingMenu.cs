@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHackingMenu : MonoBehaviour {
 
-    public Canvas canvas;
+    public Canvas playerCanvas;
 
     int clickableMask;
 
@@ -22,7 +22,7 @@ public class PlayerHackingMenu : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        canvas.enabled = false;
+        playerCanvas.enabled = false;
         cam = Camera.main;
         clickableMask = LayerMask.GetMask("Clickable");
     }
@@ -32,7 +32,7 @@ public class PlayerHackingMenu : MonoBehaviour {
     {
         if (Input.GetButtonDown(openPlayerHacking) && !menuOpen)
         {
-            canvas.enabled = true;
+            playerCanvas.enabled = true;
             menuOpen = true;
             look.enabled = false;
             Cursor.lockState = CursorLockMode.None;
@@ -40,7 +40,7 @@ public class PlayerHackingMenu : MonoBehaviour {
         }
         else if (Input.GetButtonDown(openPlayerHacking))
         {
-            canvas.enabled = false;
+            playerCanvas.enabled = false;
             menuOpen = false;
             look.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
