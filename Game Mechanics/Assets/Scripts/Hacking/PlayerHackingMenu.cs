@@ -7,8 +7,6 @@ public class PlayerHackingMenu : MonoBehaviour {
 
     public Canvas playerCanvas;
 
-    int clickableMask;
-
     public string openPlayerHacking;
     public string selectTarget;
 
@@ -24,7 +22,6 @@ public class PlayerHackingMenu : MonoBehaviour {
     {
         playerCanvas.enabled = false;
         cam = Camera.main;
-        clickableMask = LayerMask.GetMask("Clickable");
     }
 
     // Update is called once per frame
@@ -61,9 +58,9 @@ public class PlayerHackingMenu : MonoBehaviour {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100, clickableMask)) /* hit.collider != null*/
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if(hit.collider != null)
+                if (hit.collider.tag == "Hackable")
                 {
                     Debug.Log("You selected an enemy");
                 }

@@ -2581,6 +2581,10 @@ Prefab:
       propertyPath: m_Name
       value: RangedEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1361496100960896, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
+      propertyPath: m_TagString
+      value: Hackable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114058452550804640, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
@@ -2647,6 +2651,10 @@ Prefab:
     - target: {fileID: 1361496100960896, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361496100960896, guid: f0376c2ff0a42f043965326ef312b036, type: 2}
+      propertyPath: m_TagString
+      value: Hackable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0376c2ff0a42f043965326ef312b036, type: 2}

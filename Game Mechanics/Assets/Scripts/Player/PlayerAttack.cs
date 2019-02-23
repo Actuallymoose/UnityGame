@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        attackableMask = LayerMask.GetMask("Clickable");
+        attackableMask = LayerMask.GetMask("Attackable");
 	}
 	
 	// Update is called once per frame
