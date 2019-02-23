@@ -15,6 +15,8 @@ public class PlayerHackingMenu : MonoBehaviour {
     public PlayerLook look;
     public PlayerAttack ableToAttack;
 
+    List<RaycastHit> savedHits = new List<RaycastHit>();
+
     Camera cam;
 
     // Use this for initialization
@@ -42,6 +44,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             look.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             ableToAttack.enabled = true;
+            ResetSavedHit();
         }
 
         if(menuOpen)
@@ -63,9 +66,29 @@ public class PlayerHackingMenu : MonoBehaviour {
                 if (hit.collider.tag == "Hackable")
                 {
                     Debug.Log("You selected something hackable.");
+                    savedHits.Add(hit);
+                    hit.collider.gameObject.GetComponent<Selected>().selected = true;
+                }
+                else
+                {
+                    ResetSavedHit();
                 }
             }
+            else
+            {
+                ResetSavedHit();
+            }
+        }
+    }
+
+    // used to turn off hacking menu popup for hackable objects
+    void ResetSavedHit()
+    {
+        for (int i = 0; i < savedHits.Count; i++)
+        {
+            savedHits[i].collider.gameObject.GetComponent<Selected>().selected = false;
         }
 
+        savedHits.Clear();
     }
 }
