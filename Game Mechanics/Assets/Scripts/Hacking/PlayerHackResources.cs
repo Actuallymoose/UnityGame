@@ -9,7 +9,7 @@ public class PlayerHackResources : MonoBehaviour {
 
     public Text hackPoints;
 
-    void Start()
+    void Awake()
     {
         currentPoints = startingPoints;
         UpdatePointsText();

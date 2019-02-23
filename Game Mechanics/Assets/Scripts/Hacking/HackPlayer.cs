@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HackPlayer : MonoBehaviour {
 
-    string buttonChoice;
     public PlayerMove moveVariables;
     public PlayerHackResources points;
     public Text speedText, gravityText, jumpText, airControlText, sprintText;
@@ -14,112 +13,97 @@ public class HackPlayer : MonoBehaviour {
 
     private void Update()
     {
-        switch (buttonChoice)
-        {
-            case "+speed":
-                if(points.currentPoints > 0)
-                {
-                    AlterSpeed(increment);
-                    points.TakePoints();
-                }
-                break;
-            case "-speed":
-                if(moveVariables.speed > 1f)
-                {
-                    AlterSpeed(-increment);
-                    points.AddPoints();
-                }
-                break;
-            case "+gravity":
-                if(points.currentPoints > 0)
-                {
-                    AlterGravity(increment);
-                    points.TakePoints();
-                }
-                break;
-            case "-gravity":
-                if(moveVariables.gravity > 1f)
-                {
-                    AlterGravity(-increment);
-                    points.AddPoints();
-                }
-                break;
-            case "+jump":
-                if(points.currentPoints > 0)
-                {
-                    AlterJump(increment);
-                    points.TakePoints();
-                }
-                break;
-            case "-jump":
-                if(moveVariables.jumpForce > 1f)
-                {
-                    AlterJump(-increment);
-                    points.AddPoints();
-                }
-                break;
-            case "+airMove":
-                if(points.currentPoints > 0)
-                {
-                    AlterAirMove(increment);
-                    points.TakePoints();
-                }
-                break;
-            case "-airMove":
-                if(moveVariables.airSpeed > 1f)
-                {
-                    AlterAirMove(-increment);
-                    points.AddPoints();
-                }
-                break;
-            case "+sprint":
-                if(points.currentPoints > 0)
-                {
-                    AlterSprint(increment);
-                    points.TakePoints();
-                }
-                break;
-            case "-sprint":
-                if(moveVariables.sprintSpeed > 1f)
-                {
-                    AlterSprint(-increment);
-                    points.AddPoints();
-                }
-                break;
-        }
-
         UpdateText();
-        buttonChoice = "";
     }
 
-    public void ClickLog(string choice)
+    public void UpSpeed()
     {
-        buttonChoice = choice;
+        if (points.currentPoints > 0)
+        {
+            moveVariables.speed += increment;
+            points.TakePoints();
+        }
     }
 
-    void AlterSpeed(float amount)
+    public void DownSpeed()
     {
-        moveVariables.speed += amount;
+        if (moveVariables.speed > 1f)
+        {
+            moveVariables.speed -= increment;
+            points.AddPoints();
+        }
     }
 
-    void AlterGravity(float amount)
+    public void UpGravity()
     {
-        moveVariables.gravity += amount;
+        if(moveVariables.gravity < 25)
+        {
+            moveVariables.gravity += increment;
+            points.AddPoints();
+        }
     }
 
-    void AlterJump(float amount)
+    public void DownGravity()
     {
-        moveVariables.jumpForce += amount;
+        if(points.currentPoints > 0)
+        {
+            moveVariables.gravity -= increment;
+            points.TakePoints();
+        }
     }
 
-    void AlterAirMove(float amount)
+    public void UpJump()
     {
-        moveVariables.airSpeed += amount;
+        if(points.currentPoints > 0)
+        {
+            moveVariables.jumpForce += increment;
+            points.TakePoints();
+        }
     }
 
-    void AlterSprint(float amount)
+    public void DownJump()
     {
-        moveVariables.sprintSpeed += amount;
+        if(moveVariables.jumpForce > 1f)
+        {
+            moveVariables.jumpForce -= increment;
+            points.AddPoints();
+        }  
+    }
+
+    public void UpAirMove()
+    {
+        if(points.currentPoints > 0)
+        {
+            moveVariables.airSpeed += increment;
+            points.TakePoints();
+        }
+    }
+
+    public void DownAirMove()
+    {
+        if(moveVariables.airSpeed > 1f)
+        {
+            moveVariables.airSpeed -= increment;
+            points.AddPoints();
+        }
+    }
+
+    public void UpSprint()
+    {
+        if(points.currentPoints > 0)
+        {
+            moveVariables.sprintSpeed += increment;
+            points.TakePoints();
+        }
+    }
+
+    public void DownSprint()
+    {
+        if(moveVariables.sprintSpeed > 1f)
+        {
+            moveVariables.sprintSpeed -= increment;
+            points.AddPoints();
+        }
     }
 
     void UpdateText()
