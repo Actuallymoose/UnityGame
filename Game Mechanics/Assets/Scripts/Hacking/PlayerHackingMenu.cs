@@ -62,7 +62,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             {
                 if (hit.collider.tag == "Hackable")
                 {
-                    Debug.Log("You selected an enemy");
+                    Debug.Log("You selected something hackable.");
                 }
             }
         }
