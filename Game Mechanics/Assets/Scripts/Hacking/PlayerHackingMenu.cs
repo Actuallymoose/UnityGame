@@ -36,6 +36,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             look.enabled = false;
             Cursor.lockState = CursorLockMode.None;
             ableToAttack.enabled = false;
+            Time.timeScale = 0.2f;
         }
         else if (Input.GetButtonDown(openPlayerHacking))
         {
@@ -45,6 +46,7 @@ public class PlayerHackingMenu : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             ableToAttack.enabled = true;
             ResetSavedHit();
+            Time.timeScale = 1f;
         }
 
         if(menuOpen)
