@@ -71,14 +71,6 @@ public class PlayerHackingMenu : MonoBehaviour {
                     savedHits.Add(hit);
                     hit.collider.gameObject.GetComponent<Selected>().selected = true;
                 }
-                else
-                {
-                    ResetSavedHit();
-                }
-            }
-            else
-            {
-                ResetSavedHit();
             }
         }
     }
